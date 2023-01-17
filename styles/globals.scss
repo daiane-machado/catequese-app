@@ -1,0 +1,65 @@
+:root {
+  --purple-000: #f2eff7;
+  --purple-100: #EFEAF4;
+  --purple-200: #D1B7F9;
+  --purple-300: #8053A4;
+  --purple-400: #592E9A;
+
+  --white: #FFFFFF;
+
+  --gray-100: #F5F5F5;
+  --gray-200: #68686A;
+  --gray-300: #313131;
+
+  --linear: linear-gradient(92.19deg, #8053A4 33.59%, #9556B2 56.29%);
+  --background-card: rgba(255, 255, 255, 0.62);
+
+
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li, input, button,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	border: 0;
+  box-sizing: border-box;
+	font: inherit;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+html,
+body {
+  
+  font-family: 'Poppins', sans-serif;
+  background-color:  var(--purple-100);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+@media (max-width: 1888px) {
+  html {
+    font-size: 93,75%;
+  }
+}
+
+@media (max-width: 728px) {
+  html {
+    font-size: 87,5%;
+  }
+}
+

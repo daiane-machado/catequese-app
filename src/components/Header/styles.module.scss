@@ -1,0 +1,38 @@
+.headerContainer {
+  height: 4.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  top: 0;
+  position: fixed;
+  z-index: 1;
+  
+  margin-bottom: 1rem;
+  padding: 0 2rem;
+  justify-content: space-between;
+  
+  background: var(--linear);
+
+  .col, .colSearch {
+    width: 33%;  
+  }
+
+  div:nth-child(3) {
+    display: flex;
+    justify-content: right;
+   
+  }
+}
+
+
+
+@media (max-width: 728px) {
+  .headerContainer {
+    padding: 0 1.2rem;
+
+    .colSearch {
+      width: 100%;
+    }
+  }
+}
