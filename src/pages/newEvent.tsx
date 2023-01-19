@@ -13,7 +13,7 @@ export default function NewEvent() {
   
   const addData = async ( datas : any) => {
 
-    console.log(datas.data)
+    console.log(datas)
     setNewCayechism(datas)
     handleAddCatechism(datas)
 
@@ -42,7 +42,7 @@ export default function NewEvent() {
   return (
     <div className={styles.container}>
         <Header showButton={false} showSearch={false} />
-        <EventCatechism title={'Novo Evento'} handleData={addData} />
+        <EventCatechism titlePage={'Novo Evento'} handleData={addData} />
     </div>
 
   )
