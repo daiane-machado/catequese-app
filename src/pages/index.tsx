@@ -1,6 +1,9 @@
 import { GetServerSideProps } from 'next'
+import useSWR from 'swr'
 import Head from 'next/head'
 import Link from 'next/link'
+import { listenerCount } from 'process'
+import { useEffect, useState } from 'react'
 import styles from '../../styles/Home.module.scss'
 import { Card } from '../components/Card'
 import { Header } from '../components/Header'
@@ -17,13 +20,25 @@ import { Header } from '../components/Header'
   ]
  } */
 
-export default function Home( { data }: any ) {
+export default function Home( { data }: any, newData : any ) {
 
-  //const { data: catechism, mutate } =  useSWR("api/catechism")
+ 
+
+ // const { catechism: data } =  useSWR("api/catechism")
   
   //console.log(data.data.data);
+  
   const catechism = data;
-        
+
+  
+  const[list, setList] = useState<any>([])
+  
+  useEffect(()=>{
+    setList([...list, data])
+    
+  },[])
+  
+  console.log("listagem:",list)
   
 
   const handleEventCatechism = (eventCatechism : any, ) => {

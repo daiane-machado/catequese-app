@@ -1,9 +1,10 @@
-import uuid from 'react-uuid';
+import uuid from 'react-uuid'
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./styles.module.scss"
 import Image from 'next/image';
+
 
 /* interface IDataCatechism {
   id: string,
@@ -15,19 +16,29 @@ import Image from 'next/image';
 } */
 
 
-export function EventCatechism(props: { titlePage: any, handleData?: any }) {
-  const { titlePage } = props
+export function EventCatechism(props: { titlePage: any, handleData?: any, action:any }) {
+  const { titlePage, handleData } = props
   const [title, setTitle] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [description, setDescription] = useState("")
   const [obs, setObs] = useState("")
+  const router = useRouter()
 
   /* let dataCatechism : IDataCatechism
   let listEventCatechism: IDataCatechism[] = [] */
   //const [allContent, setAllContent] = useState({})
 
-  const handleSubmit = (e: any) => {
+  /*
+   save: salva e não limpa
+   update: traz, pelo título, a instância do evento salva no fauna possibilitando alterar o titulo,salva atualiza e não limpa
+   delete
+
+   nova propiedade "action" = save, update, delete
+   */
+
+
+  const save = (e: any) => {
     e.preventDefault()
     const idUUID = uuid()
     const newCatechism = ({
@@ -38,8 +49,10 @@ export function EventCatechism(props: { titlePage: any, handleData?: any }) {
       description: description,
       obs: obs,
     })
-    props.handleData(newCatechism)
-    clearForm(e)
+    handleData(newCatechism)
+    router.push("/")
+
+    
   }
 
   const clearForm = (e: any) => {
@@ -66,7 +79,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any }) {
         <span className={styles.titulo}>{titlePage}</span>
       </header>
       <main>
-        <form className={styles.formEvent} onSubmit={handleSubmit}>
+        <form className={styles.formEvent} onSubmit={save}>
           <label className={styles.labelTitle} htmlFor="title">Titulo</label>
           <input
             className={styles.inputTitle}
