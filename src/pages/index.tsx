@@ -1,51 +1,33 @@
 import { GetServerSideProps } from 'next'
-import useSWR from 'swr'
 import Head from 'next/head'
 import Link from 'next/link'
-import { listenerCount } from 'process'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import styles from '../../styles/Home.module.scss'
 import { Card } from '../components/Card'
 import { Header } from '../components/Header'
+import { useGlobalContext } from '../provider'
 
 
-/* interface HomeProps {
-   data: [
-      {
-      id: string,
-      title: string,
-      description: string,
-      date: string
-    }
-  ]
- } */
 
-export default function Home( { data }: any, newData : any ) {
+export default function Home( { data }: any) {
+  
+  const { catechisms, setCatechisms } = useGlobalContext()
 
+  const test = {
+    id: 1, 
+    title:'Quaresma', 
+    description: 'O Tempo da Quaresma é o período do ano litúrgico que antecede a Páscoa cristã, sendo celebrado por algumas igrejas cristãs, dentre as quais a Católica, a Ortodoxa, a Anglicana, a Luterana e algumas denominações Presbiterianas e Reformadas. ',
+    date: 'quinta-feira , 6 de abril'
+  }
+
+  setCatechisms(data)
+  //console.log(catechism)
+  const listCatechim = data
  
-
- // const { catechism: data } =  useSWR("api/catechism")
-  
-  //console.log(data.data.data);
-  
-  const catechism = data;
-
-  
-  const[list, setList] = useState<any>([])
-  
-  useEffect(()=>{
-    setList([...list, data])
-    
-  },[])
-  
-  console.log("listagem:",list)
-  
-
+  console.log(catechisms)
   const handleEventCatechism = (eventCatechism : any, ) => {
     //event?.preventDefault()
-
     console.log(eventCatechism.data.title)
-
   }
         
   return (
@@ -60,10 +42,10 @@ export default function Home( { data }: any, newData : any ) {
 
       <main className={styles.container}>
         <div className={styles.list}  >
-          {catechism &&
-          catechism.map((catechism: any, indice: number) =>
+          {listCatechim &&
+          listCatechim.map((catechism: any, indice: number) =>
             <div key={catechism.data.id} onClick={()=>{handleEventCatechism(catechism)}}>
-              <Link href="/selectedEvent/:123">
+              <Link href="/">
                <Card  title={catechism.data.title} 
                       description={catechism.data.description} 
                       date={catechism.data.date} 

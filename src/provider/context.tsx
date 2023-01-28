@@ -1,23 +1,28 @@
-/* import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 
-export const CatechismContext = React.createContext({});
-export const CatechismProvider = ( props  : any) => {
-  const [catechisms, setCatechisms] = useState({
-    id: 'Olá',
-  title: '',
-  date: '',
-  time:'',
-  content:'',
-  obs: ''
-  })
 
-  return(
-    <CatechismContext.Provider value={{
-      catechisms, setCatechisms
-    }}>
+const listCatechism = fetch('http://localhost:3001/api/catechism/catechism')
+  
+interface IGlobalContextProps {
+  catechisms: any;
+  setCatechisms: (catechism: any) => void;
+}
+
+export const GlobalContext = createContext<IGlobalContextProps>({
+  catechisms: {},
+  setCatechisms: () => { }
+})
+
+export const GlobalContextProvider = (props: any) => {
+  const [listCatechisms, setListCatechisms] = useState({ listCatechism })
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        catechisms: listCatechisms,
+        setCatechisms: setListCatechisms
+      }}>
       {props.children}
-
-    </CatechismContext.Provider>
-
-  );
-} */
+    </GlobalContext.Provider>
+  )
+}
