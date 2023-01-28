@@ -2,20 +2,24 @@ import { EventCatechism } from "../components/EventCatechism";
 import { Header } from "../components/Header";
 import styles from "../../styles/newEvent.module.scss"
 import { useContext, useState } from "react";
-import { useRouter } from "next/router";
+import { useGlobalContext } from "../provider";
 //import { CatechismContext } from "../provider/context";
 
 export default function NewEvent() {
-  let [newCatechism, setNewCayechism] = useState({})
   //let  catechisms: string | any[], setCatechisms  = useContext(CatechismContext)
-
+  const { catechisms, setCatechisms } = useGlobalContext()
+  
+  let [newCatechism, setNewCayechism] = useState({})
 
   
-  const addData = async ( datas : any) => {
+  const addData = async ( data : any) => {
 
-    console.log(datas)
-    setNewCayechism(datas)
-    handleAddCatechism(datas)
+    const newData ={ data
+    }
+    console.log(newData)
+    //setNewCayechism(newData)
+    handleAddCatechism(data)
+    setCatechisms([...catechisms, newData])
 
   }
     

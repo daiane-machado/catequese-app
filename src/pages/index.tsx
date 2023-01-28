@@ -9,20 +9,11 @@ import { useGlobalContext } from '../provider'
 
 
 
-export default function Home( { data }: any) {
+export default function Home() {
   
-  const { catechisms, setCatechisms } = useGlobalContext()
+  const { catechisms } = useGlobalContext()
 
-  const test = {
-    id: 1, 
-    title:'Quaresma', 
-    description: 'O Tempo da Quaresma é o período do ano litúrgico que antecede a Páscoa cristã, sendo celebrado por algumas igrejas cristãs, dentre as quais a Católica, a Ortodoxa, a Anglicana, a Luterana e algumas denominações Presbiterianas e Reformadas. ',
-    date: 'quinta-feira , 6 de abril'
-  }
-
-  setCatechisms(data)
-  //console.log(catechism)
-  const listCatechim = data
+  const listCatechim = catechisms
  
   console.log(catechisms)
   const handleEventCatechism = (eventCatechism : any, ) => {

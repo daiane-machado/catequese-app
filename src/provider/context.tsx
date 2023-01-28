@@ -1,7 +1,4 @@
 import React, { useState, createContext } from "react";
-
-
-const listCatechism = fetch('http://localhost:3001/api/catechism/catechism')
   
 interface IGlobalContextProps {
   catechisms: any;
@@ -13,16 +10,17 @@ export const GlobalContext = createContext<IGlobalContextProps>({
   setCatechisms: () => { }
 })
 
-export const GlobalContextProvider = (props: any) => {
-  const [listCatechisms, setListCatechisms] = useState({ listCatechism })
-
+export const GlobalContextProvider = ({children}: any) => {
+  const listCatechism = children.props.data
+  const [listCatechisms, setListCatechisms] = useState(listCatechism)
+ 
   return (
     <GlobalContext.Provider
       value={{
         catechisms: listCatechisms,
         setCatechisms: setListCatechisms
       }}>
-      {props.children}
+      {children}
     </GlobalContext.Provider>
   )
 }
