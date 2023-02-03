@@ -15,6 +15,9 @@ export default function Home() {
 
   const listCatechim = catechisms
  
+
+
+  
   console.log(catechisms)
   const handleEventCatechism = (eventCatechism : any, ) => {
     //event?.preventDefault()

@@ -14,12 +14,22 @@ export default function NewEvent() {
   
   const addData = async ( data : any) => {
 
-    const newData ={ data
-    }
+    const newData ={ data }
+    
+
+    
+
     console.log(newData)
     //setNewCayechism(newData)
     handleAddCatechism(data)
     setCatechisms([...catechisms, newData])
+
+    const dataArray = [...catechisms];
+    setCatechisms(
+        dataArray.sort((a, b) =>
+            a.data.date.localeCompare(b.data.date)
+        )
+    );
 
   }
     
