@@ -12,6 +12,7 @@ export const GlobalContext = createContext<IGlobalContextProps>({
 
 export const GlobalContextProvider = ({children}: any) => {
   const listCatechism = children.props.data
+  
   const [listCatechisms, setListCatechisms] = useState(listCatechism)
  
   return (

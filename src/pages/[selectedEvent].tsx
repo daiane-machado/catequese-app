@@ -7,7 +7,7 @@ export default function SelectedEvent({ title } : any ) {
   return (
     <div className={styles.container}>
         <Header showButton={false} showSearch={false} />
-        <EventCatechism title={'Evento salvo'} />
+        <EventCatechism titlePage={'Evento salvo'} action={undefined} />
     </div>
 
   )

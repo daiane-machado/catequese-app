@@ -1,2 +1,2 @@
-[]- colocar as catecquese em ordem de data
-[] -  data está alterando com ao ser colocado no map
+[x]- colocar as catecquese em ordem de data
+[x]- mostrar o resgitrar para listagem logo quando cria

@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from '../../styles/Home.module.scss'
 import { Card } from '../components/Card'
 import { Header } from '../components/Header'
@@ -10,20 +10,23 @@ import { useGlobalContext } from '../provider'
 
 
 export default function Home() {
-  
-  const { catechisms } = useGlobalContext()
+
+  const { catechisms  } = useGlobalContext()
 
   const listCatechim = catechisms
- 
 
-
+  listCatechim.sort(function(a: { data: any | number }, b: { data: any | number }) {
+    const timeA = new Date(`${a.data.date}T${a.data.time}`)
+    const timeB = new Date(`${b.data.date}T${b.data.time}`)
+    return  timeA.getTime() - timeB.getTime();
+  })
   
-  console.log(catechisms)
-  const handleEventCatechism = (eventCatechism : any, ) => {
+  console.log(listCatechim)
+  const handleEventCatechism = (eventCatechism: any,) => {
+    //console.log(eventCatechism.data.title)
     //event?.preventDefault()
-    console.log(eventCatechism.data.title)
   }
-        
+
   return (
     <div>
       <Head>
@@ -32,23 +35,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header showButton={true}  showSearch={true} />
+      <Header showButton={true} showSearch={true} />
 
       <main className={styles.container}>
         <div className={styles.list}  >
           {listCatechim &&
-          listCatechim.map((catechism: any, indice: number) =>
-            <div key={catechism.data.id} onClick={()=>{handleEventCatechism(catechism)}}>
-              <Link href="/">
-               <Card  title={catechism.data.title} 
-                      description={catechism.data.description} 
-                      date={catechism.data.date} 
-                      time={catechism.data.time}/> 
-              </Link>
-            </div>)
-          } 
+            listCatechim.map((catechism: any, indice: number) =>
+              <div key={catechism.data.id} onClick={() => { handleEventCatechism(catechism) }}>
+                <Link href="/">
+
+                  <Card title={catechism.data.title}
+                    description={catechism.data.description}
+                    date={catechism.data.date}
+                    time={catechism.data.time} />
+                </Link>
+              </div>)
+          }
         </div>
-      </main>    
+      </main>
 
     </div>
   )
@@ -58,6 +62,6 @@ export async function getServerSideProps() {
 
   const res = await fetch('http://localhost:3001/api/catechism/catechism')
   const { data } = await res.json()
-  
-  return { props: data}
+
+  return { props: data }
 } 
