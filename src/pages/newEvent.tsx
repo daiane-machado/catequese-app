@@ -44,7 +44,7 @@ export default function NewEvent() {
   return (
     <div className={styles.container}>
       <Header showButton={false} showSearch={false} />
-      <EventCatechism titlePage={'Novo Evento'} handleData={addData} action={"save"} />
+      <EventCatechism titlePage={'Novo Evento'} handleData={addData} />
     </div>
 
   )

@@ -16,8 +16,8 @@ import Image from 'next/image';
 } */
 
 
-export function EventCatechism(props: { titlePage: any, handleData?: any, action:any }) {
-  const { titlePage, handleData } = props
+export function EventCatechism(props: { titlePage: any, handleData?: any, contentSelected?:any }) {
+  const { titlePage, handleData, contentSelected } = props
   const [title, setTitle] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
@@ -25,6 +25,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, action
   const [obs, setObs] = useState("")
   const router = useRouter()
 
+  console.log(contentSelected)
   /* let dataCatechism : IDataCatechism
   let listEventCatechism: IDataCatechism[] = [] */
   //const [allContent, setAllContent] = useState({})

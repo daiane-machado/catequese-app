@@ -1,27 +1,40 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useContext, useEffect, useState } from 'react'
 import styles from '../../styles/Home.module.scss'
 import { Card } from '../components/Card'
 import { Header } from '../components/Header'
 import { useGlobalContext } from '../provider'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 
 
 export default function Home() {
-
-  const { catechisms  } = useGlobalContext()
+  
+  
+  const { catechisms } = useGlobalContext()
+  //const [ listCatechim, setListCatechim] = useState(catechisms)
+  
+ /*  const refreshData = () => {
+    router.replace(router.asPath)
+  } */
+    
+  /* if( !catechisms) {
+    refreshData()
+    //setListCatechim(data)
+  } */
 
   const listCatechim = catechisms
+ 
 
   listCatechim.sort(function(a: { data: any | number }, b: { data: any | number }) {
     const timeA = new Date(`${a.data.date}T${a.data.time}`)
     const timeB = new Date(`${b.data.date}T${b.data.time}`)
-    return  timeA.getTime() - timeB.getTime();
+    return  timeB.getTime() - timeA.getTime();
   })
   
-  console.log(listCatechim)
+  //console.log(listCatechim)
   const handleEventCatechism = (eventCatechism: any,) => {
     //console.log(eventCatechism.data.title)
     //event?.preventDefault()
@@ -42,7 +55,7 @@ export default function Home() {
           {listCatechim &&
             listCatechim.map((catechism: any, indice: number) =>
               <div key={catechism.data.id} onClick={() => { handleEventCatechism(catechism) }}>
-                <Link href="/">
+                <Link href={`http://localhost:3001/${catechism.data.title}`}>
 
                   <Card title={catechism.data.title}
                     description={catechism.data.description}
