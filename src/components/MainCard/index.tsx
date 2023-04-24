@@ -1,14 +1,16 @@
 import styles from "./styles.module.scss"
 
-export function Card(props: { title: string, description: string, date: string, time: string} ) {
+export function MainCard(props: { title: string, description: string, date: string, time: string} ) {
   const newDate = new Date(`${props.date} 00:00:00`)
+  console.log(props.date)
+
   //2015-07-25T00:00:00-0300
   //console.log(`${data.getUTCFullYear()}-${(data.getUTCMonth()+1).toString().padStart(2, '0')}-${data.getUTCDate().toString().padStart(2, '0')}`); // 1988-03-01
 
-  const testeDate = new Date(props.date).getUTCMonth()
+ /*  const testeDate = new Date(props.date).getUTCMonth()
   console.log(props.date)
   console.log(testeDate)
-  console.log(newDate)
+  console.log(newDate) */
   
   const time = props.time
   console.log(time.replace(':', 'h'))

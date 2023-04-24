@@ -13,7 +13,7 @@ export function Header(props: { showButton: any, showSearch: any }){
      
      <div className={styles.col}>
       <Link href="/">
-        <Image src="/img/logo.svg" alt="logo catequese" width={42} height={42} />
+        <Image src="/img/logo.svg" alt="logo catequese" width={45} height={45} />
       </Link>
      </div>
      <div className={styles.colSearch}>

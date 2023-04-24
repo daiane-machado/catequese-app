@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../../styles/Home.module.scss'
-import { Card } from '../components/Card'
+import { MainCard } from '../components/MainCard'
 import { Header } from '../components/Header'
 import { useGlobalContext } from '../provider'
 import { useRouter } from 'next/router'
@@ -34,12 +34,21 @@ export default function Home() {
     return  timeB.getTime() - timeA.getTime();
   })
   
-  //console.log(listCatechim)
+  
   const handleEventCatechism = (eventCatechism: any,) => {
     //console.log(eventCatechism.data.title)
     //event?.preventDefault()
   }
-
+  
+  const listDateTitle:  {date: Date, title: string }[] =[]
+  listCatechim.map((item: any) =>{
+    listDateTitle.push({date : new Date(`${item.data.date}T${item.data.time}`), title : item.data.title})
+  })
+  const date = new Date()
+  const nextEventDates = listDateTitle.filter((item: any) => item.date > date).map((item : any) => (item))
+  const nextEvent = nextEventDates[nextEventDates.length - 1]
+ 
+  
   return (
     <div>
       <Head>
@@ -51,20 +60,32 @@ export default function Home() {
       <Header showButton={true} showSearch={true} />
 
       <main className={styles.container}>
-        <div className={styles.list}  >
-          {listCatechim &&
-            listCatechim.map((catechism: any, indice: number) =>
+      <div className={styles.list}  >
+          {listCatechim.filter((item: any) => item.data.title == nextEvent.title ).map((catechism : any) => (
               <div key={catechism.data.id} onClick={() => { handleEventCatechism(catechism) }}>
                 <Link href={`http://localhost:3001/${catechism.data.title}`}>
 
-                  <Card title={catechism.data.title}
+                  <MainCard title={catechism.data.title}
                     description={catechism.data.description}
                     date={catechism.data.date}
                     time={catechism.data.time} />
                 </Link>
-              </div>)
-          }
+              </div>))}
         </div>
+        <div className={styles.list}  >
+          {listCatechim.map((catechism : any) => (
+              <div key={catechism.data.id} onClick={() => { handleEventCatechism(catechism) }}>
+                <Link href={`http://localhost:3001/${catechism.data.title}`}>
+
+                  <MainCard title={catechism.data.title}
+                    description={catechism.data.description}
+                    date={catechism.data.date}
+                    time={catechism.data.time} />
+                </Link>
+              </div>))}
+        </div>
+
+     
       </main>
 
     </div>
