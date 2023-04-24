@@ -17,7 +17,6 @@ export function MainCard(props: { title: string, description: string, date: stri
   const namesDay = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab']
 
   const dateEvent = {
-    title: props.title,
     date: newDate.getDate() < 9 ? `0${newDate.getDate()}` : newDate.getDate(),
     day: namesDay[newDate.getDay()],
     month: newDate.toLocaleString("pt-BR", { month: "short" }),

@@ -31,6 +31,7 @@
 .list {
   list-style: none;
   width: 80%;
+  scroll-behavior: auto;
 }
 
 @media (max-width: 728px) {

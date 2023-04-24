@@ -5,8 +5,7 @@ import styles from '../../styles/Home.module.scss'
 import { MainCard } from '../components/MainCard'
 import { Header } from '../components/Header'
 import { useGlobalContext } from '../provider'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { SimpleCard } from '../components/SimpleCard'
 
 
 
@@ -60,8 +59,8 @@ export default function Home() {
       <Header showButton={true} showSearch={true} />
 
       <main className={styles.container}>
-      <div className={styles.list}  >
-          {listCatechim.filter((item: any) => item.data.title == nextEvent.title ).map((catechism : any) => (
+        <div className={styles.list}  >
+            {listCatechim.filter((item: any) => item.data.title == nextEvent.title ).map((catechism : any) => (
               <div key={catechism.data.id} onClick={() => { handleEventCatechism(catechism) }}>
                 <Link href={`http://localhost:3001/${catechism.data.title}`}>
 
@@ -70,19 +69,21 @@ export default function Home() {
                     date={catechism.data.date}
                     time={catechism.data.time} />
                 </Link>
-              </div>))}
+              </div>))
+            }
         </div>
         <div className={styles.list}  >
-          {listCatechim.map((catechism : any) => (
+          {listCatechim &&
+            listCatechim.map((catechism: any, indice: number) =>
               <div key={catechism.data.id} onClick={() => { handleEventCatechism(catechism) }}>
                 <Link href={`http://localhost:3001/${catechism.data.title}`}>
 
-                  <MainCard title={catechism.data.title}
-                    description={catechism.data.description}
+                  <SimpleCard title={catechism.data.title}
                     date={catechism.data.date}
                     time={catechism.data.time} />
                 </Link>
-              </div>))}
+              </div>)
+          }
         </div>
 
      
