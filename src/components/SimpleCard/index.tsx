@@ -14,12 +14,11 @@ export function SimpleCard(props: {title: string, date: string, time: string} ){
 
   return(
     <button className={styles.container}>
-      <span className={styles.text}>{props.title}</span>
+      <span className={styles.textTitle}>{props.title}</span>
       <div className={styles.date}>
         <Image className={styles.iconCalendar} src="/img/calendar.svg" alt="Calendario" width={20} height={20}></Image>
         <span className={styles.text}>{dateEvent.date}</span>
         <span className={styles.text}>{dateEvent.month}</span>
-        <span className={styles.text}>{dateEvent.year}</span>
       </div>
 
     </button>   

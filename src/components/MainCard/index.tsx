@@ -9,8 +9,8 @@ export function MainCard(props: { title: string, description: string, date: stri
 
  /*  const testeDate = new Date(props.date).getUTCMonth()
   console.log(props.date)
-  console.log(testeDate)
-  console.log(newDate) */
+  console.log(testeDate)*/
+  console.log(newDate)
   
   const time = props.time
   console.log(time.replace(':', 'h'))

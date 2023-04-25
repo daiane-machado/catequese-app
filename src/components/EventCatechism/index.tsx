@@ -88,6 +88,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, conten
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            maxLength={31}
             required>
           </input>
 
