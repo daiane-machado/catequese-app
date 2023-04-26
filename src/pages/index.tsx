@@ -45,7 +45,8 @@ export default function Home() {
   })
   const date = new Date()
   const currentMonth = (date.getMonth() + 1) < 9 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1)
-
+  const currentMonthName = date.toLocaleString("pt-BR", { month: "long" })
+  console.log(currentMonthName)
  
 
   const nextEventDates = listDateTitle.filter((item: any) => item.date > date).map((item : any) => (item))
@@ -76,14 +77,23 @@ export default function Home() {
               </div>))
             }
         </div>
+        
+        <div className={styles.otherEvents}>
+          <div className={styles.textMonthEvents}>
+            <span >{currentMonthName}</span>
+            <Link href={'/'}>{'Outros eventos>>'}</Link>
+          </div>
+        </div>
+
         <div className={styles.list}>
           {listCatechim.filter((item: any) => item.data.date.substring(5,7) === currentMonth ).map((catechism: any, indice: number) =>
               <div key={catechism.data.id} >
                 <Link href={`http://localhost:3001/${catechism.data.title}`}>
 
-                  <SimpleCard title={catechism.data.title}
+                  <SimpleCard 
+                    title={catechism.data.title}
                     date={catechism.data.date}
-                    time={catechism.data.time} />
+                    />
                 </Link>
               </div>)
           }

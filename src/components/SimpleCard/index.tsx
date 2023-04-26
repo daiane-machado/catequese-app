@@ -2,7 +2,7 @@ import styles from "./styles.module.scss"
 
 import Image from "next/image"
 
-export function SimpleCard(props: {title: string, date: string, time: string} ){
+export function SimpleCard(props: {title: string, date?: string} ){
 
   const newDate = new Date(`${props.date} 00:00:00`)
   
