@@ -81,11 +81,11 @@ export default function Home() {
         <div className={styles.otherEvents}>
           <div className={styles.textMonthEvents}>
             <span >{currentMonthName}</span>
-            <Link href={'/'}>{'Outros eventos>>'}</Link>
+            <Link href={'/listEvents'}>{'Outros eventos>>'}</Link>
           </div>
         </div>
 
-        <div className={styles.list}>
+        <div className={`${styles.list} ${styles.listMonth}`}>
           {listCatechim.filter((item: any) => item.data.date.substring(5,7) === currentMonth ).map((catechism: any, indice: number) =>
               <div key={catechism.data.id} >
                 <Link href={`http://localhost:3001/${catechism.data.title}`}>

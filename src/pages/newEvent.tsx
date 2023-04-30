@@ -3,10 +3,11 @@ import { Header } from "../components/Header";
 import styles from "../../styles/newEvent.module.scss"
 import { useGlobalContext } from "../provider";
 import { FormEvent } from "../components/FormEvent";
-import { GetListCatechism } from "../utils/getListCatechism";
+//import { GetListCatechism } from "../utils/getListCatechism";
 
 export default function NewEvent( ) {
   //let  catechisms: string | any[], setCatechisms  = useContext(CatechismContext)
+ 
   const { catechisms, setCatechisms } = useGlobalContext()
   
   const addData = async (data: any) => {
