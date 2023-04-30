@@ -1,45 +1,49 @@
 import uuid from 'react-uuid'
 import Link from "next/link"
-import { useRouter } from "next/router"
+import router, { useRouter } from "next/router"
 import { useState } from "react"
 import styles from "./styles.module.scss"
 import Image from 'next/image';
 
 
-/* interface IDataCatechism {
-  id: string,
-  title: string,
-  date: string,
-  time:string,
-  content:string,
-  obs: string
-} */
-
-
-export function EventCatechism(props: { titlePage: any, handleData?: any, selectedEvent?:any }) {
-  const { titlePage, handleData, selectedEvent } = props
-  const [title, setTitle] = useState("")
-  const [date, setDate] = useState("")
-  const [time, setTime] = useState("")
-  const [description, setDescription] = useState("")
-  const [obs, setObs] = useState("")
+export function FormEvent(props: { handleData?: any, content: any, action: any} ) {
+  const { handleData, content, action } = props
   const router = useRouter()
+  
+  const [title, setTitle] = useState(content.title)
+  const [date, setDate] = useState(content.date)
+  const [time, setTime] = useState(content.time)
+  const [description, setDescription] = useState(content.description)
+  const [obs, setObs] = useState(content.obs)
+  
+  function changeValue (e : any) {
+    const newValue = e.target.value
+    const field = e.target.id
 
-  //console.log(selectedEvent[0].data)
-  /* let dataCatechism : IDataCatechism
-  let listEventCatechism: IDataCatechism[] = [] */
-  //const [allContent, setAllContent] = useState({})
+    switch (field) {
+      case 'title':
+        setTitle(newValue);
+        break;
+      case 'date':
+        setDate(newValue);
+        break;
+      case 'time':
+        setTime(newValue);
+        break;
+      case 'description':
+        setDescription(newValue);
+        break;
+      case 'obs':
+        setObs(newValue);
+        break;
+    }
+  }
 
-  /*
-   save: salva e não limpa
-   update: traz, pelo título, a instância do evento salva no fauna possibilitando alterar o titulo,salva atualiza e não limpa
-   delete
+  if(action === 'save'){
+    
+  }
 
-   nova propiedade "action" = save, update, delete
-   */
-
-
-  const save = (e: any) => {
+  function save (e: any) {
     e.preventDefault()
     const idUUID = uuid()
     const newCatechism = ({
@@ -53,22 +57,6 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, select
     handleData(newCatechism)
     router.push("/")
 
-    
-  }
-
-  const clearForm = (e: any) => {
-    e.preventDefault()
-
-    setTitle("")
-    setDate("")
-    setTime("")
-    setDescription("")
-    setObs("")
-  }
-
-  const deleteEvent = () => {
-    //listEventCatechism.pop()
-    console.log("deletar um evento")
   }
 
 
@@ -77,7 +65,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, select
     <div className={styles.container}>
       <header className={styles.header}>
         <Image className={styles.iconCalendar} src="/img/calendar.svg" alt="Calendario" width={20} height={20}></Image>
-        <span className={styles.titulo}>{titlePage}</span>
+        <span className={styles.titulo}>{content.title == ''? 'Novo Encontro' : title}</span>
       </header>
       <main>
         <form className={styles.formEvent} onSubmit={save}>
@@ -87,7 +75,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, select
             id="title"
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={changeValue}
             maxLength={31}
             required>
           </input>
@@ -137,7 +125,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, select
           </textarea>
 
           <div className={styles.divButtons}>
-            <button className={styles.btDelete} onClick={deleteEvent}>Excluir</button>
+            <button className={styles.btDelete} >Excluir</button>
             <Link href="/">
               <button className={styles.btCancel}>Cancelar</button>
             </Link>

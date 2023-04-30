@@ -2,29 +2,29 @@ import { EventCatechism } from "../components/EventCatechism";
 import { Header } from "../components/Header";
 import styles from "../../styles/newEvent.module.scss"
 import { useGlobalContext } from "../provider";
+import { FormEvent } from "../components/FormEvent";
+import { GetListCatechism } from "../utils/getListCatechism";
 
-export default function NewEvent() {
+export default function NewEvent( ) {
   //let  catechisms: string | any[], setCatechisms  = useContext(CatechismContext)
   const { catechisms, setCatechisms } = useGlobalContext()
-
+  
   const addData = async (data: any) => {
-
+    
     const newData = { data }
     console.log(newData)
     console.log(data)
-
-    //setNewCayechism(newData)
-    handleAddCatechism(data)
-    setCatechisms([...catechisms, newData])
-
     
-
+    //setNewCayechism(newData)
+    handleCreateCatechism(data)
+    setCatechisms([...catechisms, newData])
   }
-
-  async function handleAddCatechism(datas: any) {
-
+   
+  
+  async function handleCreateCatechism(datas: any) {
+    
     // eslint-disable-next-line react-hooks/rules-of-hooks
-
+    
     //console.log(datas)
     try {
 
@@ -41,19 +41,31 @@ export default function NewEvent() {
 
   }
 
+  const dataEvent = {
+    title: '',
+    date: '',
+    time: '',
+    description: '',
+    obs: '',
+  }
+
   return (
+      
     <div className={styles.container}>
       <Header showButton={false} showSearch={false} />
-      <EventCatechism titlePage={'Novo Evento'} handleData={addData} />
+      <FormEvent action={'save'} handleData={addData} content={dataEvent}/>
     </div>
-
+    
   )
 }
 
-/* export async function getServerSideProps() {
+//GetListCatechism()
 
-  const req = await fetch('http://localhost:3001/api/catechism')
-  const { data } = await req.json()
-  
-  return { props: data}
-}  */
+//solução provisória:
+export async function getServerSideProps() {
+
+  const res = await fetch('http://localhost:3001/api/catechism/catechism')
+  const { data } = await res.json()
+
+  return { props: data }
+} 

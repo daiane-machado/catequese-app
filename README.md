@@ -7,6 +7,6 @@
 [x] - colocar scroll apenas na lista e não na janela
 []- criar a página de editEvent
 [] - criar modal ou página com todos os eventos (sem data, apenas o título)
-[x]- ativar o clique nos itens da lista
+[]- ativar o clique nos itens da lista e mostrar os dados
 []- Colocar oas botões salva, cancelar e excluir em modo flutuante
 []- em newEvent deixar apenas os botões cancelar e salvar

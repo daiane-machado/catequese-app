@@ -31,7 +31,31 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
   }
   
   //update data
-  if (req.method == 'POST') {
+
+  if (req.method === 'PUT'){
+      const { query: { id },
+    } =req;
+
+    const { title, date, time, description, obs } = req.body;
+
+    try {
+      await faunaClient.query(
+        q.Update(q.Ref(q.Collection('customers'), id), {
+          data: {
+            title,
+            date,
+            time,
+            description,
+            obs,
+          },
+        })
+      );
+      res.status(200).end();
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  };
+ /* if (req.method == 'PUT') {
     const body = JSON.parse(req.body);
     let query = await faunaClient.query(
       q.Update(
@@ -47,6 +71,6 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
       )
     );
     res.status(200).json({ data: query });
-  }
+  }  */
 };
 

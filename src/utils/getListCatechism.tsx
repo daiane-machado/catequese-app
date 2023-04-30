@@ -10,3 +10,5 @@ export async function GetListCatechism(){
   setCatechisms({data})
 }
 
+
+

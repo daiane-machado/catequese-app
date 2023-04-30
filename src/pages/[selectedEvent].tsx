@@ -1,8 +1,9 @@
-import { EventCatechism } from "../components/EventCatechism";
 import { Header } from "../components/Header";
 import styles from "../../styles/newEvent.module.scss"
 import { useRouter } from "next/router";
 import { useGlobalContext } from "../provider";
+import { FormEvent } from "../components/FormEvent";
+import { GetListCatechism } from "../utils/getListCatechism";
 
 
 export default function SelectedEvent({ data }: any) {
@@ -13,11 +14,46 @@ export default function SelectedEvent({ data }: any) {
   const router = useRouter()
   const {selectedEvent} = router.query
 
+  
+  
+
+
+  async function handleUpdateCatechism(datas: any) {
+
+    try {
+
+      const res = await fetch("http://localhost:3001/api/catechism/catechism", {
+        method: 'PUT',
+        body: JSON.stringify({
+          data: datas,
+        }),
+      });
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+
+  const event = (data.filter((item: any )=> item.data.title === selectedEvent).map((catechism: any )=> catechism))[0].data
+  
+  
+  const dataEvent = {
+    
+    title: event.title,
+    date: event.date,
+    time: event.time,
+    description: event.description,
+    obs: event.obs,
+  }
+
+  console.log(event[0])
 
   return (
     <div className={styles.container}>
         <Header showButton={false} showSearch={false} />
-        <EventCatechism titlePage={selectedEvent}/>
+        <FormEvent action={'view'} content={dataEvent} />
     </div>
 
   )
@@ -31,9 +67,3 @@ export async function getServerSideProps() {
   return { props: data }
 } 
 
-
-/* export async function getStaticProps(params: { id: any }) {
-  const res = await fetch(`http://localhost:3001/api/catechism/catechism/${params.id}`)
-  const post = await res.json() 
-  return {props : {post}}
-}   */
