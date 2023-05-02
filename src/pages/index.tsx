@@ -23,7 +23,7 @@ export default function Home() {
     refreshData()
     //setListCatechim(data)
   } */
-
+  //console.log(catechisms.map((item) => {item.ref})))
   const listCatechim = catechisms
  
 
@@ -110,6 +110,6 @@ export async function getServerSideProps() {
 
   const res = await fetch('http://localhost:3001/api/catechism/catechism')
   const { data } = await res.json()
-
+ 
   return { props: data }
 } 

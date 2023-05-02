@@ -1,15 +1,19 @@
 import uuid from 'react-uuid'
 import Link from "next/link"
-import router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import styles from "./styles.module.scss"
 import Image from 'next/image';
+import { IoIosSave } from "react-icons/io";
+import { GiCancel } from "react-icons/gi"
+import { RiDeleteBin5Fill } from "react-icons/ri"
 
 
 export function FormEvent(props: { handleData?: any, content: any, action: any} ) {
   const { handleData, content, action } = props
   const router = useRouter()
   
+  const [id, setId] = useState(content.id)
   const [title, setTitle] = useState(content.title)
   const [date, setDate] = useState(content.date)
   const [time, setTime] = useState(content.time)
@@ -40,14 +44,17 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   }
 
   if(action === 'save'){
-    
+    null
   }
 
-  function save (e: any) {
+ 
+  const save = (e: any) =>{
     e.preventDefault()
     const idUUID = uuid()
+
+    const id = content.id === '' ? idUUID : content.id
     const newCatechism = ({
-      id: idUUID,
+      id: id,
       title: title,
       date: date,
       time: time,
@@ -59,16 +66,41 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
 
   }
 
+  
+
+  
+  function handleCancel  ()  {
+    console.log('testando..')
+    return router.push("/")
+    
+  }
+
 
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <Image className={styles.iconCalendar} src="/img/calendar.svg" alt="Calendario" width={20} height={20}></Image>
-        <span className={styles.titulo}>{content.title == ''? 'Novo Encontro' : title}</span>
+        <span className={styles.titulo}>{content.title === ''? 'Novo Encontro' : title}</span>
       </header>
       <main>
         <form className={styles.formEvent} onSubmit={save}>
+          <div className={styles.wrapperButtons}>
+          <button type='submit'>
+              <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`}/>
+            </button>
+         
+            <button onClick={handleCancel}>
+              <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`}/>
+            </button>
+          
+          {
+            content.title === '' ? null :
+          <button>
+            <RiDeleteBin5Fill className={`${styles.iconButtons} ${styles.iconDelete}`}/>
+          </button>
+          }
+          </div>
           <label className={styles.labelTitle} htmlFor="title">Titulo</label>
           <input
             className={styles.inputTitle}
@@ -129,7 +161,9 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
             <Link href="/">
               <button className={styles.btCancel}>Cancelar</button>
             </Link>
-            <button type="submit" className={styles.btSave}>Salvar</button>
+            <button type="submit" className={styles.btSave}>
+              <IoIosSave className={styles.iconSave}/>
+            </button>
           </div>
         </form>
       </main>

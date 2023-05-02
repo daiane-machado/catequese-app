@@ -58,7 +58,7 @@ export function EventCatechism(props: { titlePage: any, handleData?: any, select
 
   const clearForm = (e: any) => {
     e.preventDefault()
-
+    
     setTitle("")
     setDate("")
     setTime("")

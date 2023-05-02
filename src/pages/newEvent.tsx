@@ -43,6 +43,7 @@ export default function NewEvent( ) {
   }
 
   const dataEvent = {
+    id: '',
     title: '',
     date: '',
     time: '',
