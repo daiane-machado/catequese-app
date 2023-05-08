@@ -3,13 +3,16 @@ import styles from "../../styles/newEvent.module.scss"
 import { useRouter } from "next/router";
 import { useGlobalContext } from "../provider";
 import { FormEvent } from "../components/FormEvent";
+import { query } from "faunadb";
 
 
 export default function SelectedEvent( {data} : any) {
 
 
-  const [teste] = data
-  console.log(teste.map((item : any, index: any )=> item.ref["@ref"].id))
+  //const [teste] = data
+  const x = (data.filter((item : any) => item.ref["@ref"].id === '363472680440037457').map((catechism: any )=> catechism.data))
+  
+  console.log(x)
   const { catechisms, setCatechisms } = useGlobalContext()
   setCatechisms(data)
   
@@ -33,7 +36,7 @@ export default function SelectedEvent( {data} : any) {
 
     try {
 
-      const res = await fetch("http://localhost:3001/api/catechism/catechism", {
+      const res = await fetch(`http://localhost:3001/api/catechism/catechism/`, {
         method: 'PUT',
        
         body: JSON.stringify({
@@ -49,11 +52,11 @@ export default function SelectedEvent( {data} : any) {
   }
 
 
-  const event = (data.filter((item: any )=> item.data.title === selectedEvent).map((catechism: any )=> catechism))[0].data
-  
+  const event = (data.filter((item: any )=> item.ref["@ref"].id === selectedEvent).map((catechism: any )=> catechism))[0].data
+  console.log(selectedEvent)
   
   const dataEvent = {
-    
+    id: selectedEvent,
     title: event.title,
     date: event.date,
     time: event.time,

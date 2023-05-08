@@ -57,22 +57,22 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
   if (req.method === 'PUT'){
     console.log('estou no PUT')
     const body = JSON.parse(req.body);
-    const {title, date, time, description, obs } = body.data;
+    const {title, date, time, description, obs, id } = body.data;
     console.log(typeof(title))
-      console.log(body)
+      console.log(id)
 
     try {
       await faunaClient.query(
         q.Update(
-          q.Ref(q.Collection('codecatechism'), '1682915878640000'), 
+          q.Ref(q.Collection('codecatechism'), id), 
           
            {
             data: {
               
-              date: '2023-05-18',
-              time: '11:12',
-              description: '666633333',
-              obs: ''
+              date: date,
+              time: time,
+              description: description,
+              obs: obs
             }
           }
            

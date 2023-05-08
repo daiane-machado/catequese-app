@@ -13,7 +13,7 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   const { handleData, content, action } = props
   const router = useRouter()
   
-  const [id, setId] = useState(content.id)
+  //const [id, setId] = useState(content.id)
   const [title, setTitle] = useState(content.title)
   const [date, setDate] = useState(content.date)
   const [time, setTime] = useState(content.time)

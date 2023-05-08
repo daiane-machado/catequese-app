@@ -6,12 +6,13 @@ import { MainCard } from '../components/MainCard'
 import { Header } from '../components/Header'
 import { useGlobalContext } from '../provider'
 import { SimpleCard } from '../components/SimpleCard'
+import { useRouter } from 'next/router'
 
 
 
-export default function Home() {
+export default function Home({data}: any) {
   
-  
+  const router = useRouter()
   const { catechisms } = useGlobalContext()
   //const [ listCatechim, setListCatechim] = useState(catechisms)
   
@@ -39,6 +40,9 @@ export default function Home() {
     //event?.preventDefault()
   } */
   
+  //const x = (data.filter((item : any) => item.ref["@ref"].id === '363472680440037457').map((catechism: any )=> catechism.data))
+  
+ 
   const listDateTitle:  {date: Date, title: string }[] =[]
   listCatechim.map((item: any) =>{
     listDateTitle.push({date : new Date(`${item.data.date}T${item.data.time}`), title : item.data.title})
@@ -46,12 +50,11 @@ export default function Home() {
   const date = new Date()
   const currentMonth = (date.getMonth() + 1) < 9 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1)
   const currentMonthName = date.toLocaleString("pt-BR", { month: "long" })
-  console.log(currentMonthName)
+ // console.log(currentMonthName)
  
 
   const nextEventDates = listDateTitle.filter((item: any) => item.date > date).map((item : any) => (item))
   const nextEvent = nextEventDates[nextEventDates.length - 1]
- 
   
   return (
     <div className={styles.wrapper}>
@@ -88,7 +91,7 @@ export default function Home() {
         <div className={`${styles.list} ${styles.listMonth}`}>
           {listCatechim.filter((item: any) => item.data.date.substring(5,7) === currentMonth ).map((catechism: any, indice: number) =>
               <div key={catechism.data.id} >
-                <Link href={`http://localhost:3001/${catechism.data.title}`}>
+                <Link href={`http://localhost:3001/${catechism.ref["@ref"].id}`}>
 
                   <SimpleCard 
                     title={catechism.data.title}
