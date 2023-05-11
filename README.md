@@ -12,5 +12,6 @@
 [x]- em newEvent deixar apenas os botões cancelar e salvar
 [] - criar endpoint getOne
 [] - refatorar os endpoints create, update e delete
-[]- funcionalidade update
+[x]- funcionalidade update
+[] - atualização imediata na home ao atualizar
 []- funcionalide delete

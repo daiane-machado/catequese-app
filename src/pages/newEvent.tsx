@@ -3,13 +3,24 @@ import { Header } from "../components/Header";
 import styles from "../../styles/newEvent.module.scss"
 import { useGlobalContext } from "../provider";
 import { FormEvent } from "../components/FormEvent";
+import { useRouter } from "next/router";
 //import { GetListCatechism } from "../utils/getListCatechism";
 
 export default function NewEvent( ) {
   //let  catechisms: string | any[], setCatechisms  = useContext(CatechismContext)
- 
-  const { catechisms, setCatechisms } = useGlobalContext()
+  const router = useRouter()
+  const { catechisms, setCatechisms, setUpdateDatas } = useGlobalContext()
+  setUpdateDatas(true)
   
+
+  function refreshData () {
+    router.replace(router.asPath)
+    console.log('Fiz refresh')
+    setUpdateDatas(true)
+  }
+ 
+
+
   const addData = async (data: any) => {
     
     const newData = { data }
@@ -35,6 +46,9 @@ export default function NewEvent( ) {
           data: datas,
         }),
       });
+
+      setUpdateDatas(true)
+      
 
     } catch (error) {
       console.log(error)

@@ -7,13 +7,32 @@ import { Header } from '../components/Header'
 import { useGlobalContext } from '../provider'
 import { SimpleCard } from '../components/SimpleCard'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 
 
 export default function Home({data}: any) {
   
+  const { catechisms, updateDatas, setUpdateDatas } = useGlobalContext()
+  
   const router = useRouter()
-  const { catechisms } = useGlobalContext()
+  
+  //updateDatas === true ? refreshData() : null
+
+  
+  
+  function refreshData () {
+    router.replace(router.asPath)
+    console.log('Fiz refresh')
+    //setUpdateDatas(true)
+  }
+
+
+  useEffect(() => {
+    refreshData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateDatas]);
+  
   //const [ listCatechim, setListCatechim] = useState(catechisms)
   
  /*  const refreshData = () => {
@@ -26,9 +45,12 @@ export default function Home({data}: any) {
   } */
   //console.log(catechisms.map((item) => {item.ref})))
   const listCatechim = catechisms
+  console.log(listCatechim)
+ // const y = (listCatechim.filter((item: any )=> item.ref["@ref"].id === '362857419143905360').map((catechism: any )=> catechism))[0].data
+ // console.log(y)
  
 
-  listCatechim.sort(function(a: { data: any | number }, b: { data: any | number }) {
+  data.sort(function(a: { data: any | number }, b: { data: any | number }) {
     const timeA = new Date(`${a.data.date}T${a.data.time}`)
     const timeB = new Date(`${b.data.date}T${b.data.time}`)
     return  timeB.getTime() - timeA.getTime();
@@ -44,7 +66,7 @@ export default function Home({data}: any) {
   
  
   const listDateTitle:  {date: Date, title: string }[] =[]
-  listCatechim.map((item: any) =>{
+  data.map((item: any) =>{
     listDateTitle.push({date : new Date(`${item.data.date}T${item.data.time}`), title : item.data.title})
   })
   const date = new Date()
@@ -56,6 +78,8 @@ export default function Home({data}: any) {
   const nextEventDates = listDateTitle.filter((item: any) => item.date > date).map((item : any) => (item))
   const nextEvent = nextEventDates[nextEventDates.length - 1]
   
+
+  console.log(updateDatas)
   return (
     <div className={styles.wrapper}>
       <Head>
@@ -68,7 +92,7 @@ export default function Home({data}: any) {
 
       <main className={styles.container}>
         <div className={styles.nextEvent}  >
-            {listCatechim.filter((item: any) => item.data.title == nextEvent.title ).map((catechism : any) => (
+            {data.filter((item: any) => item.data.title == nextEvent.title ).map((catechism : any) => (
               <div key={catechism.data.id} >
                 <Link href={`http://localhost:3001/${catechism.data.title}`}>
 
@@ -89,7 +113,7 @@ export default function Home({data}: any) {
         </div>
 
         <div className={`${styles.list} ${styles.listMonth}`}>
-          {listCatechim.filter((item: any) => item.data.date.substring(5,7) === currentMonth ).map((catechism: any, indice: number) =>
+          {data.filter((item: any) => item.data.date.substring(5,7) === currentMonth ).map((catechism: any, indice: number) =>
               <div key={catechism.data.id} >
                 <Link href={`http://localhost:3001/${catechism.ref["@ref"].id}`}>
 

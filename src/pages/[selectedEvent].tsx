@@ -53,6 +53,8 @@ export default function SelectedEvent( {data} : any) {
 
 
   const event = (data.filter((item: any )=> item.ref["@ref"].id === selectedEvent).map((catechism: any )=> catechism))[0].data
+  
+  
   console.log(selectedEvent)
   
   const dataEvent = {

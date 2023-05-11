@@ -68,7 +68,7 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
           
            {
             data: {
-              
+              title: title,
               date: date,
               time: time,
               description: description,
