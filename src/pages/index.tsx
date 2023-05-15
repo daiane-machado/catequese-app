@@ -45,7 +45,7 @@ export default function Home({data}: any) {
   } */
   //console.log(catechisms.map((item) => {item.ref})))
   const listCatechim = catechisms
-  console.log(listCatechim)
+  //console.log(listCatechim)
  // const y = (listCatechim.filter((item: any )=> item.ref["@ref"].id === '362857419143905360').map((catechism: any )=> catechism))[0].data
  // console.log(y)
  

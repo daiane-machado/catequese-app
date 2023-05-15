@@ -8,18 +8,10 @@ import { useRouter } from "next/router";
 
 export default function NewEvent( ) {
   //let  catechisms: string | any[], setCatechisms  = useContext(CatechismContext)
-  const router = useRouter()
+  //const router = useRouter()
   const { catechisms, setCatechisms, setUpdateDatas } = useGlobalContext()
   setUpdateDatas(true)
   
-
-  function refreshData () {
-    router.replace(router.asPath)
-    console.log('Fiz refresh')
-    setUpdateDatas(true)
-  }
- 
-
 
   const addData = async (data: any) => {
     
@@ -29,7 +21,7 @@ export default function NewEvent( ) {
     
     //setNewCayechism(newData)
     handleCreateCatechism(data)
-    setCatechisms([...catechisms, newData])
+    //setCatechisms([...catechisms, newData])
   }
    
   
@@ -78,10 +70,10 @@ export default function NewEvent( ) {
 //GetListCatechism()
 
 //solução provisória:
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
 
   const res = await fetch('http://localhost:3001/api/catechism/catechism')
   const { data } = await res.json()
 
   return { props: data }
-} 
+}  */
