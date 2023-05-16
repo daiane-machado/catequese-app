@@ -60,7 +60,7 @@ export default function NewEvent( ) {
   return (
       
     <div className={styles.container}>
-      <Header showButton={false} showSearch={false} />
+      <Header showButton={false} showSearch={false}/>
       <FormEvent action={'save'} handleData={addData} content={dataEvent}/>
     </div>
     

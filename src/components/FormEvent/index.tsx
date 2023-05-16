@@ -67,7 +67,8 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   
 
   
-  const handleCancel = () => {
+  const handleCancel = (e: any) => {
+    e.preventDefault()
   console.log('testando..')
     return router.push("/")
     

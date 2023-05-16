@@ -3,14 +3,15 @@ import Link from 'next/link'
 import { AddButton } from './AddButton'
 import { Search } from './Search'
 import styles from './styles.module.scss'
+import Dropdown from '../Dropdown'
 
-export function Header(props: { showButton: any, showSearch: any }){
-  const { showButton , showSearch } = props
+export function Header(props: { showButton: any, showSearch: any, dataCatechism?: any }){
+  const { showButton , showSearch, dataCatechism } = props
   
 
   return(
     <header className={styles.headerContainer}>
-     
+    
      <div className={styles.col}>
       <Link href="/">
         <Image src="/img/logo.svg" alt="logo catequese" width={45} height={45} />
@@ -19,7 +20,7 @@ export function Header(props: { showButton: any, showSearch: any }){
      <div className={styles.colSearch}>
         {
           showSearch ?
-            <Search  placeholder="&#61442;"  />
+            <Search  placeholder="&#61442;" dataCatechism={dataCatechism}/>
           : null
         }
       </div>
@@ -32,6 +33,7 @@ export function Header(props: { showButton: any, showSearch: any }){
           : null
         }
       </div>
+      
      
     </header>
   )
