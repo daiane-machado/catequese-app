@@ -10,7 +10,7 @@
   overflow: auto;
   scroll-behavior: auto;
   height: 50%;
-  border-radius: 12px;  
+  border-radius: 4px;  
 }
 .dropdown::-webkit-scrollbar {
   width: 0.3rem;
@@ -40,15 +40,29 @@
 }
 
 .link {
-  color: black;
-  padding: 12px 16px;
+  padding: 0.25rem 0.8rem 1rem 0.8rem;
   text-decoration: none;
-  display: block;
+  display: flex;
+  height: 3.7rem;
+  flex-direction: column;
+  align-content: center;
+  
+  .title {
+    color: var(--gray-300);
+    font-size: 1em;
+  }
+
+  .description {
+    color: var(--gray-200);
+    font-size: 0.7em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 768px) {
 
   .dropdown{
-    width: 80%;
+    width: 70%;
   }
 }
