@@ -1,6 +1,7 @@
 .wrapper {
   height: 100%;
   height: auto;
+  position: relative;
 }
 
 
@@ -70,6 +71,16 @@
     height: 30rem;
   }
 
+  .textAllEvents {
+  display: block;
+  color: var(--purple-300);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 70%;
+  margin-bottom: 0.5rem;
+
+}
 
 
 

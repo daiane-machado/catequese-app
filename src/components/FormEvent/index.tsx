@@ -43,16 +43,13 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
     }
   }
 
-  if(action === 'save'){
-    null
-  }
-
- 
+   
+  const idUUID = uuid()
+  const id = content.id === '' ? idUUID : content.id
+  
   const save = (e: any) =>{
     e.preventDefault()
-    const idUUID = uuid()
 
-    const id = content.id === '' ? idUUID : content.id
     const newCatechism = ({
       id: id,
       title: title,
@@ -61,6 +58,7 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
       description: description,
       obs: obs,
     })
+    
     handleData(newCatechism)
     router.push("/")
 
@@ -69,13 +67,34 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   
 
   
-  function handleCancel  ()  {
-    console.log('testando..')
+  const handleCancel = (e: any) => {
+    e.preventDefault()
+  console.log('testando..')
     return router.push("/")
     
   }
 
+  const handleDelete = async (e : any) => {
+    //criar um modal de confirmação
+   // const id = content.id === '' ? idUUID : content.id
+   e.preventDefault()
 
+    try {
+      const res = await fetch(`http://localhost:3001/api/catechism/catechism`, {
+        method: 'DELETE',
+        body: JSON.stringify({
+          data: id,
+        }),
+      });
+      if (res.status === 200) {
+        router.push("/");
+      } else {
+        throw new Error(await res.text());
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -84,19 +103,19 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
         <span className={styles.titulo}>{content.title === ''? 'Novo Encontro' : title}</span>
       </header>
       <main>
-        <form className={styles.formEvent} onSubmit={save}>
+        <form className={styles.formEvent} >
           <div className={styles.wrapperButtons}>
-          <button type='submit'>
-              <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`}/>
-            </button>
+          <button onClick={save}>
+            <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`}/>
+          </button>
          
-            <button onClick={handleCancel}>
-              <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`}/>
-            </button>
+          <button onClick={handleCancel}>
+            <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`}/>
+          </button>
           
           {
             content.title === '' ? null :
-          <button>
+          <button onClick={handleDelete}>
             <RiDeleteBin5Fill className={`${styles.iconButtons} ${styles.iconDelete}`}/>
           </button>
           }

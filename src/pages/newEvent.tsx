@@ -3,13 +3,16 @@ import { Header } from "../components/Header";
 import styles from "../../styles/newEvent.module.scss"
 import { useGlobalContext } from "../provider";
 import { FormEvent } from "../components/FormEvent";
+import { useRouter } from "next/router";
 //import { GetListCatechism } from "../utils/getListCatechism";
 
 export default function NewEvent( ) {
   //let  catechisms: string | any[], setCatechisms  = useContext(CatechismContext)
- 
-  const { catechisms, setCatechisms } = useGlobalContext()
+  //const router = useRouter()
+  const { catechisms, setCatechisms, setUpdateDatas } = useGlobalContext()
+  setUpdateDatas(true)
   
+
   const addData = async (data: any) => {
     
     const newData = { data }
@@ -18,7 +21,7 @@ export default function NewEvent( ) {
     
     //setNewCayechism(newData)
     handleCreateCatechism(data)
-    setCatechisms([...catechisms, newData])
+    //setCatechisms([...catechisms, newData])
   }
    
   
@@ -35,6 +38,9 @@ export default function NewEvent( ) {
           data: datas,
         }),
       });
+
+      setUpdateDatas(true)
+      
 
     } catch (error) {
       console.log(error)
@@ -54,7 +60,7 @@ export default function NewEvent( ) {
   return (
       
     <div className={styles.container}>
-      <Header showButton={false} showSearch={false} />
+      <Header showButton={false} showSearch={false}/>
       <FormEvent action={'save'} handleData={addData} content={dataEvent}/>
     </div>
     
@@ -64,10 +70,10 @@ export default function NewEvent( ) {
 //GetListCatechism()
 
 //solução provisória:
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
 
   const res = await fetch('http://localhost:3001/api/catechism/catechism')
   const { data } = await res.json()
 
   return { props: data }
-} 
+}  */

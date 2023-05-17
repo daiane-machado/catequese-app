@@ -7,7 +7,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(  req: NextApiRequest, res: NextApiResponse) {
 
   
-  console.log("req.body")
+  //console.log("req.body")
   //console.log(res)
 
   //list data
@@ -27,7 +27,7 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
   if (req.method == 'POST') {
     const body = JSON.parse(req.body);
     
-    console.log(body)
+    //console.log(body)
     let query = await faunaClient.query(
       q.Create(q.Collection('codecatechism'),body)
     );
@@ -58,8 +58,8 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
     console.log('estou no PUT')
     const body = JSON.parse(req.body);
     const {title, date, time, description, obs, id } = body.data;
-    console.log(typeof(title))
-      console.log(id)
+    //console.log(typeof(title))
+      //console.log(id)
 
     try {
       await faunaClient.query(
@@ -68,7 +68,7 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
           
            {
             data: {
-              
+              title: title,
               date: date,
               time: time,
               description: description,
@@ -87,12 +87,15 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
 
 
   //Delete
+  //pegar pelo parametro ou pelo body
   if (req.method === 'DELETE'){
+    //console.log('estou no Delete')
     const body = JSON.parse(req.body);
-    const {title, date, time, description, obs } = body.data;
+    const id  = body.data;
+    //console.log(body.data)
 
   try {
-    await faunaClient.query(q.Delete(q.Ref(q.Collection('customers'),title)));
+    await faunaClient.query(q.Delete(q.Ref(q.Collection('codecatechism'),id)));
     res.status(200).end();
   } catch (e: any) {
     res.status(500).json({ error: e.message });

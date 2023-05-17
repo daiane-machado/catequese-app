@@ -12,7 +12,7 @@ export default function SelectedEvent( {data} : any) {
   //const [teste] = data
   const x = (data.filter((item : any) => item.ref["@ref"].id === '363472680440037457').map((catechism: any )=> catechism.data))
   
-  console.log(x)
+  //console.log(x)
   const { catechisms, setCatechisms } = useGlobalContext()
   setCatechisms(data)
   
@@ -28,9 +28,8 @@ export default function SelectedEvent( {data} : any) {
     
     //setNewCayechism(newData)
     handleUpdateCatechism(data)
-    setCatechisms([...catechisms, newData])
+    //setCatechisms([...catechisms, newData])
   }
-
 
   async function handleUpdateCatechism(datas: any) {
 
@@ -53,6 +52,8 @@ export default function SelectedEvent( {data} : any) {
 
 
   const event = (data.filter((item: any )=> item.ref["@ref"].id === selectedEvent).map((catechism: any )=> catechism))[0].data
+  
+  
   console.log(selectedEvent)
   
   const dataEvent = {

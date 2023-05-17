@@ -10,7 +10,6 @@
 [x]- ativar o clique nos itens da lista e mostrar os dados
 [x]- Colocar oas botões salva, cancelar e excluir em modo flutuante
 [x]- em newEvent deixar apenas os botões cancelar e salvar
-[] - criar endpoint getOne
-[] - refatorar os endpoints create, update e delete
-[]- funcionalidade update
-[]- funcionalide delete
+[x]- funcionalidade update
+[x] - atualização imediata na home ao atualizar
+[x]- funcionalide delete
