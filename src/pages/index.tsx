@@ -50,9 +50,7 @@ export default function Home({data}: any) {
   const date = new Date()
   const currentMonth = (date.getMonth() + 1) < 9 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1)
   const currentMonthName = date.toLocaleString("pt-BR", { month: "long" })
- // console.log(currentMonthName)
  
-
   const nextEventDates = listDateTitle.filter((item: any) => item.date > date).map((item : any) => (item))
   const nextEvent = nextEventDates[nextEventDates.length - 1]
   
