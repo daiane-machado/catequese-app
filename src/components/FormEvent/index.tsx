@@ -50,6 +50,7 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   const save = (e: any) =>{
     e.preventDefault()
 
+    
     const newCatechism = ({
       id: id,
       title: title,
@@ -63,9 +64,6 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
     router.push("/")
 
   }
-
-  
-
   
   const handleCancel = (e: any) => {
     e.preventDefault()
@@ -80,7 +78,7 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
    e.preventDefault()
 
     try {
-      const res = await fetch(`http://localhost:3001/api/catechism/catechism`, {
+      const res = await fetch(`${process.env.API_URL}`, {
         method: 'DELETE',
         body: JSON.stringify({
           data: id,
@@ -103,22 +101,22 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
         <span className={styles.titulo}>{content.title === ''? 'Novo Encontro' : title}</span>
       </header>
       <main>
-        <form className={styles.formEvent} >
+        <form className={styles.formEvent} onSubmit={save} >
           <div className={styles.wrapperButtons}>
-          <button onClick={save}>
-            <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`}/>
-          </button>
-         
-          <button onClick={handleCancel}>
-            <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`}/>
-          </button>
+            <button className={styles.teste} type='submit'>
+              <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`}/>
+            </button>
           
-          {
-            content.title === '' ? null :
-          <button onClick={handleDelete}>
-            <RiDeleteBin5Fill className={`${styles.iconButtons} ${styles.iconDelete}`}/>
-          </button>
-          }
+            <button onClick={handleCancel}>
+              <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`}/>
+            </button>
+            
+            {
+              content.title === '' ? null :
+            <button onClick={handleDelete}>
+              <RiDeleteBin5Fill className={`${styles.iconButtons} ${styles.iconDelete}`}/>
+            </button>
+            }
           </div>
           <label className={styles.labelTitle} htmlFor="title">Titulo</label>
           <input
@@ -175,15 +173,7 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
             onChange={(e) => setObs(e.target.value)}>
           </textarea>
 
-          <div className={styles.divButtons}>
-            <button className={styles.btDelete} >Excluir</button>
-            <Link href="/">
-              <button className={styles.btCancel}>Cancelar</button>
-            </Link>
-            <button type="submit" className={styles.btSave}>
-              <IoIosSave className={styles.iconSave}/>
-            </button>
-          </div>
+         
         </form>
       </main>
     </div>

@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+  //position: absolute;
+  bottom: 0;
+  height: 2.5rem;
+  align-items: center;
+  //margin: auto;
+  width: 100%;
+  
+  
+  .text {
+    color: var(--gray-300);
+    font-size: 0.75rem;
+    //margin: auto;
+    //text-align: center;
+  }
+
+
+}

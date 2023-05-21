@@ -13,3 +13,8 @@
 [x]- funcionalidade update
 [x] - atualização imediata na home ao atualizar
 [x]- funcionalide delete
+[] - preparar para produção
+[] - ajuste de alinhamento
+[x] - refatorar (limpar)
+[x] - remover rodapé
+[x] - destacar os botões flutuantes
