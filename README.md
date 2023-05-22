@@ -8,13 +8,15 @@
 [x]- criar a página de editEvent
 [x] - criar modal ou página com todos os eventos (sem data, apenas o título)
 [x]- ativar o clique nos itens da lista e mostrar os dados
-[x]- Colocar oas botões salva, cancelar e excluir em modo flutuante
+[x]- Colocar os botões salva, cancelar e excluir em modo flutuante
 [x]- em newEvent deixar apenas os botões cancelar e salvar
 [x]- funcionalidade update
 [x] - atualização imediata na home ao atualizar
 [x]- funcionalide delete
 [] - preparar para produção
-[] - ajuste de alinhamento
+[] - pagina de login e logout
+[x] - ajuste de alinhamento
+[x] - autenticação
 [x] - refatorar (limpar)
 [x] - remover rodapé
 [x] - destacar os botões flutuantes

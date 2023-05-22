@@ -1,22 +1,71 @@
-.headerContainer {
-  height: 3.5rem;
-  width: 100%;
+.wrapper {
   display: flex;
-  align-items: center;
-  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
   top: 0;
   position: fixed;
   z-index: 1;
-  padding: 0 2rem;
-  justify-content: space-between;
-  
+  width: 100%;
   background: var(--linear);
+  padding-top: 0.3rem;
+  
+  .divSignOut {
+    width: 100%;
+    
+    //flex-direction: column;
+    display: flex;
+   justify-content: end;
 
-  .col, .colSearch {
-    width: 33%;  
+   padding: 0 2rem;
+  }
+}
+.textUser{
+  font-size: 0.8rem;
+  color: var(--purple-200);
+}
+.signOut {
+  font-size: 0.85rem;
+  color: var(--purple-100);
+  background: transparent;
+  text-align: left;
+  height: 100%;
+  padding: 0 0.8rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--purple-150);
+    filter: brightness(0.85);
+    text-decoration: underline;
+    //background-color: var(--purple-300);
+  }
+}
+
+.headerContainer {
+  height: 3rem;
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  align-items:flex-start;
+  overflow: hidden;
+  margin-top: 0.3rem;
+  justify-content: space-between;
+ 
+
+  .colLogo, .colSearch, .colNew {
+    width: 33%; 
+  }
+  
+  .colLogo {
+    align-items: start;
+    flex-direction: column;
+    display: flex;
+    
+
   }
 
-  div:nth-child(3) {
+  .colNew {
     display: flex;
     justify-content: right;
    

@@ -28,7 +28,7 @@ export default function ListEvnets({ data }: any) {
         <div className={`${styles.list} ${styles.listALL}`}  >
           {listCatechism.map((catechism: any) => (
             <div key={catechism.data.id} >
-              <Link href={`http://localhost:3001/${catechism.ref["@ref"].id}`}>
+              <Link href={`/${catechism.ref["@ref"].id}`}>
 
                 <SimpleCard
                   title={catechism.data.title}
@@ -45,7 +45,7 @@ export default function ListEvnets({ data }: any) {
 }
 
 export async function getServerSideProps() {
-  
+
   const res = await fetch(`${process.env.API_URL}`)
   const { data } = await res.json()
 
