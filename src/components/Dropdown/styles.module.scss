@@ -12,6 +12,7 @@
   scroll-behavior: auto;
   height: 50%;
   border-radius: 4px;  
+  transition: 0.5s;
 }
 .dropdown::-webkit-scrollbar {
   width: 0.3rem;

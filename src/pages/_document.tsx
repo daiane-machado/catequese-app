@@ -6,6 +6,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <script src="https://accounts.google.com/gsi/client" async defer></script>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet" />
@@ -14,7 +15,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-
+          <div id="buttonDiv"></div>
         </body>
       </Html>
     )
