@@ -67,14 +67,11 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   
   const handleCancel = (e: any) => {
     e.preventDefault()
-  console.log('testando..')
     return router.push("/")
     
   }
 
   const handleDelete = async (e : any) => {
-    //criar um modal de confirmação
-   // const id = content.id === '' ? idUUID : content.id
    e.preventDefault()
 
     try {

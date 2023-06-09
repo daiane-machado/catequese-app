@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Dropdown from '../components/Dropdown'
 import Footer from '../components/Footer'
-import { signIn, useSession } from "next-auth/react"
-import Image from 'next/image'
+import { useSession } from "next-auth/react"
+import SignIn from '../components/SignIn'
 
 export default function Home({ data }: any) {
 
@@ -101,19 +101,7 @@ export default function Home({ data }: any) {
       )
       }
       {!session && (
-        <>
-          <div className={styles.divLogin}>
-            <div className={styles.divSignIn}>
-                <Image alt="logo catequese" width={100} height={100} src="/img/logo2.svg" />
-                <div className={styles.divTextLogin}>
-                <Image alt="logo catequese" width={19.17} height={27.48} src="/img/calendar-purple.svg" />
-                <span className={styles.titleLogin}>Planner Catequese</span>
-                </div>
-              <button  className={styles.btLogin} onClick={() => signIn("google")}>
-                Login</button>
-              </div>
-          </div>
-        </>
+       <SignIn />
       )}
     </div>
 

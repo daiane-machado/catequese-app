@@ -2,12 +2,25 @@ import { Header } from '../components/Header';
 import { useRouter } from 'next/router';
 import { FormEvent } from '../components/FormEvent';
 import Footer from '../components/Footer';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 
 export default function SelectedEvent({ data }: any) {
 
   const router = useRouter()
   const { selectedEvent } = router.query
+  const { data: session } = useSession()
+  console.log(session)
+ 
+  
+  useEffect(()=> {
+    if (!session){
+      router.push('/')
+    }
+  }, [])
+
+
 
   const updateData = async (data: any) => {
     handleUpdateCatechism(data)
@@ -38,12 +51,22 @@ export default function SelectedEvent({ data }: any) {
     obs: event.obs,
   }
 
+    
+
+  
+  
   return (
+    <>
+    { session && (
+   
     <div>
       <Header showButton={false} showSearch={false} />
       <FormEvent action={'view'} handleData={updateData} content={dataEvent} />
       <Footer />
     </div>
+  )}
+
+  </>
   )
 }
 

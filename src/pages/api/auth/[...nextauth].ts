@@ -9,9 +9,13 @@ export default NextAuth({
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
       accessTokenUrl: "https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code",
     }),
-
+    
+    
   ],
- 
+  jwt: {
+    maxAge: 60
+  },
+  
   secret: process.env.secret,
   callbacks: {
     async jwt({token , account}) {
@@ -22,13 +26,16 @@ export default NextAuth({
       
     },
     
+    
+    
     async redirect({url, baseUrl}) {
       if (url === "/profile") {
         return Promise.resolve("/")
       }
       return Promise.resolve("/")
     },
-
+    
+    
     
   }
   

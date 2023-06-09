@@ -5,9 +5,22 @@ import { useGlobalContext } from "../provider";
 import styles from "../../styles/listEvents.module.scss"
 import Dropdown from "../components/Dropdown";
 import Footer from "../components/Footer";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function ListEvnets({ data }: any) {
 
+
+  const router = useRouter()
+  const { data: session } = useSession()
+
+  useEffect(() => {
+    if(!session){
+      router.push('/')
+    }
+  },[])
+  
   const listCatechism = data
   const { filterDatas, setFilterDatas } = useGlobalContext()
   const lowerSerarch = filterDatas.toLowerCase()

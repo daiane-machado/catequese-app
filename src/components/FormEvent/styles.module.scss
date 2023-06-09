@@ -129,9 +129,14 @@
   }
 
   
- /*  @media (max-width: 768px){
-    .wrapperButtons{
+ @media (max-width: 768px){
+    .container{
 
-      right: 2rem;
+      padding: 0;
     }
-  } */
+
+    .wrapperButtons{
+     right: -10rem;
+
+    }
+  } 

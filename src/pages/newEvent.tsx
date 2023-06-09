@@ -1,5 +1,5 @@
 import { Header } from "../components/Header";
-import styles from "../../styles/newEvent.module.scss"
+import styles from "../../styles/Home.module.scss"
 import { useGlobalContext } from "../provider";
 import { FormEvent } from "../components/FormEvent";
 import Footer from "../components/Footer";

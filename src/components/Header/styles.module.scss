@@ -9,68 +9,69 @@
   width: 100%;
   background: var(--linear);
   padding-top: 0.3rem;
-  
-  .divSignOut {
+
+  .headerContainer {
+    height: 3rem;
     width: 100%;
-    
-    //flex-direction: column;
+    padding: 0 1rem;
     display: flex;
-   justify-content: end;
+    align-items: flex-start;
+    overflow: hidden;
+    margin-top: 0.3rem;
+    justify-content: space-between;
 
-   padding: 0 2rem;
+
   }
-}
-.textUser{
-  font-size: 0.8rem;
-  color: var(--purple-200);
-}
-.signOut {
-  font-size: 0.85rem;
-  color: var(--purple-100);
-  background: transparent;
-  text-align: left;
-  height: 100%;
-  padding: 0 0.8rem;
-  margin-right: 0.5rem;
-  cursor: pointer;
 
-  &:hover {
-    color: var(--purple-150);
-    filter: brightness(0.85);
-    text-decoration: underline;
-    //background-color: var(--purple-300);
+
+  .colLogo,
+  .colSearch,
+  .colNew {
+    width: 33%;
   }
-}
 
-.headerContainer {
-  height: 3rem;
-  width: 100%;
-  padding: 0 2rem;
-  display: flex;
-  align-items:flex-start;
-  overflow: hidden;
-  margin-top: 0.3rem;
-  justify-content: space-between;
- 
-
-  .colLogo, .colSearch, .colNew {
-    width: 33%; 
-  }
-  
   .colLogo {
     align-items: start;
     flex-direction: column;
     display: flex;
-    
+
 
   }
 
   .colNew {
     display: flex;
     justify-content: right;
-   
+    height: 100%;
+    
+    
+    
+    :nth-child(1) {
+      margin-left: 1rem;
+    }
+
+    .signOut {
+      font-size: 0.85rem;
+      color: var(--purple-100);
+      background: transparent;
+      margin-bottom: 0.3rem;
+     
+      cursor: pointer;
+      
+
+      &:hover {
+        color: var(--purple-150);
+        filter: brightness(0.85);
+        text-decoration: underline;
+      }
+
+
+    }
+
   }
+
 }
+
+
 
 
 
@@ -79,10 +80,25 @@
 
 @media (max-width: 728px) {
   .headerContainer {
-    padding: 0 1.2rem;
+    padding: 0rem;
 
     .colSearch {
-      width: 100%;
+      width: 70%;
     }
+
+    .colLogo {
+      width: auto;
+      margin-right: 1rem;
+    }
+
+    .colNew{
+      :nth-child(1) {
+        margin-left: 0.5rem;
+      }
+    }
+
   }
+
+
+
 }
