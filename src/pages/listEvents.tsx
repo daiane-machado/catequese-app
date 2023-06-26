@@ -15,11 +15,11 @@ export default function ListEvnets({ data }: any) {
   const router = useRouter()
   const { data: session } = useSession()
 
-  useEffect(() => {
+  /* useEffect(() => {
     if(!session){
       router.push('/')
     }
-  },[])
+  },[]) */
   
   const listCatechism = data
   const { filterDatas, setFilterDatas } = useGlobalContext()

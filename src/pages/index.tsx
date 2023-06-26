@@ -12,7 +12,13 @@ import Footer from '../components/Footer'
 import { useSession } from "next-auth/react"
 import SignIn from '../components/SignIn'
 
+interface INewEvnet {
+  title: string,
+  date: Date,
+}
+
 export default function Home({ data }: any) {
+  console.log(data)
 
   const { data: session } = useSession()
 
@@ -42,15 +48,22 @@ export default function Home({ data }: any) {
         title: item.data.title
       })
   })
+  console.log(listDateTitle)
   const lowerSerarch = filterDatas.toLowerCase()
   const catechism = data.filter((item: any) => item.data.title.toLowerCase().includes(lowerSerarch) || item.data.description.toLowerCase().includes(lowerSerarch))
-  
+
   const date = new Date()
   const currentMonth = (date.getMonth() + 1) < 9 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1)
   const currentMonthName = date.toLocaleString("pt-BR", { month: "long" })
 
+  const empytEvent : INewEvnet = {
+    date: new Date(`00-00-00T 00:00`),
+        title: ""
+  }
+
   const nextEventDates = listDateTitle.filter((item: any) => item.date > date).map((item: any) => (item))
-  const nextEvent = nextEventDates[nextEventDates.length - 1]
+  const nextEvent =  nextEventDates.length > 0 ? nextEventDates[nextEventDates.length - 1] : empytEvent
+    console.log(nextEvent)
 
   return (
     <div className={styles.wrapper} onClick={() => { setFilterDatas('') }}>
@@ -61,12 +74,23 @@ export default function Home({ data }: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {session && (
-        <>
+      {/* {session && (
+        <> */}
           <Header showButton={true} showSearch={true} dataCatechism={data} />
           <main className={styles.container} >
             <div className={styles.nextEvent}  >
-              {data.filter((item: any) => item.data.title == nextEvent.title).map((catechism: any) => (
+              
+              {nextEvent.title === "" ?
+              <div  >
+              
+                <MainCard title={nextEvent.title}
+                  description={""}
+                  date={"00-00-00T"}
+                  time={"00:00"} />
+              
+            </div> :
+              
+              data.filter((item: any) => item.data.title == nextEvent.title).map((catechism: any) => (
                 <div key={catechism.data.id} >
                   <Link href={`${catechism.ref["@ref"].id}`}>
                     <MainCard title={catechism.data.title}
@@ -84,7 +108,7 @@ export default function Home({ data }: any) {
               </div>
             </div>
             <div className={`${styles.list} ${styles.listMonth}`}>
-              {data.filter((item: any) => item.data.date.substring(5, 7) === currentMonth).map((catechism: any, indice: number) =>
+              {data.filter((item: any) => item.data.date.substring(5, 7) === currentMonth).map((catechism: any) =>
                 <div key={catechism.data.id} >
                   <Link href={`/${catechism.ref["@ref"].id}`}>
                     <SimpleCard
@@ -97,21 +121,21 @@ export default function Home({ data }: any) {
             </div>
           </main>
           <Footer />
-        </>
+        {/* </>
       )
       }
       {!session && (
-       <SignIn />
-      )}
+        <SignIn />
+      )} */}
     </div>
 
   )
-      }
+}
 
-  export async function getServerSideProps() {
+export async function getServerSideProps() {
 
-    const res = await fetch(`${process.env.API_URL}`)
-    const { data } = await res.json()
+  const res = await fetch(`${process.env.API_URL}`)
+  const { data } = await res.json()
 
-    return { props: data }
-  } 
+  return { props: data }
+} 

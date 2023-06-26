@@ -8,19 +8,16 @@ import { IoIosSave } from "react-icons/io";
 import { GiCancel } from "react-icons/gi"
 import { RiDeleteBin5Fill } from "react-icons/ri"
 
-
-export function FormEvent(props: { handleData?: any, content: any, action: any} ) {
-  const { handleData, content, action } = props
+export function FormEvent(props: { handleData?: any, content: any, action: any }) {
+  const { handleData, content } = props
   const router = useRouter()
-  
-  //const [id, setId] = useState(content.id)
   const [title, setTitle] = useState(content.title)
   const [date, setDate] = useState(content.date)
   const [time, setTime] = useState(content.time)
   const [description, setDescription] = useState(content.description)
   const [obs, setObs] = useState(content.obs)
-  
-  function changeValue (e : any) {
+
+  function changeValue(e: any) {
     const newValue = e.target.value
     const field = e.target.id
 
@@ -43,14 +40,11 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
     }
   }
 
-   
   const idUUID = uuid()
   const id = content.id === '' ? idUUID : content.id
-  
-  const save = (e: any) =>{
+  const save = (e: any) => {
     e.preventDefault()
 
-    
     const newCatechism = ({
       id: id,
       title: title,
@@ -59,20 +53,20 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
       description: description,
       obs: obs,
     })
-    
+
     handleData(newCatechism)
     router.push("/")
 
   }
-  
+
   const handleCancel = (e: any) => {
     e.preventDefault()
     return router.push("/")
-    
+
   }
 
-  const handleDelete = async (e : any) => {
-   e.preventDefault()
+  const handleDelete = async (e: any) => {
+    e.preventDefault()
 
     try {
       const res = await fetch(`${process.env.API_URL}`, {
@@ -94,25 +88,25 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Image className={styles.iconCalendar} src="/img/calendar.svg" alt="Calendario" width={20} height={20}></Image>
-        <span className={styles.titulo}>{content.title === ''? 'Novo Encontro' : title}</span>
+        <Image className={styles.iconCalendar} src="/img/calendar.svg" alt="Calendario" width={20} height={20} />
+        <span className={styles.titulo}>{content.title === '' ? 'Novo Encontro' : title}</span>
       </header>
       <main>
         <form className={styles.formEvent} onSubmit={save} >
           <div className={styles.wrapperButtons}>
             <button className={styles.teste} type='submit'>
-              <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`}/>
+              <IoIosSave className={`${styles.iconButtons} ${styles.iconSave}`} />
             </button>
-          
+
             <button onClick={handleCancel}>
-              <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`}/>
+              <GiCancel className={`${styles.iconButtons} ${styles.iconCancel}`} />
             </button>
-            
+
             {
               content.title === '' ? null :
-            <button onClick={handleDelete}>
-              <RiDeleteBin5Fill className={`${styles.iconButtons} ${styles.iconDelete}`}/>
-            </button>
+                <button onClick={handleDelete}>
+                  <RiDeleteBin5Fill className={`${styles.iconButtons} ${styles.iconDelete}`} />
+                </button>
             }
           </div>
           <label className={styles.labelTitle} htmlFor="title">Titulo</label>
@@ -169,8 +163,6 @@ export function FormEvent(props: { handleData?: any, content: any, action: any} 
             value={obs}
             onChange={(e) => setObs(e.target.value)}>
           </textarea>
-
-         
         </form>
       </main>
     </div>

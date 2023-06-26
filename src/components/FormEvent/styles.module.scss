@@ -21,10 +21,9 @@
     font-size: 1.5rem;
     font-weight: 500;
     margin-left: 0.5rem;
-    
   }
-
 }
+
 .formEvent {
   margin: 1rem auto;
   display: flex;
@@ -121,22 +120,15 @@
       .iconDelete {
         width: 1.4rem;
         height: 1.4rem;
-        
       }
-
     }
-
   }
 
-  
  @media (max-width: 768px){
     .container{
-
       padding: 0;
     }
-
     .wrapperButtons{
      right: -10rem;
-
     }
   } 

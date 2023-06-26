@@ -4,63 +4,39 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 
 
-export default async function handler(  req: NextApiRequest, res: NextApiResponse) {
-
-  
-  //console.log("req.body")
-  //console.log(res)
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   //list data
   if (req.method == 'GET') {
-    
+
     let query = await faunaClient.query(
       q.Map(
         q.Paginate(q.Documents(q.Collection('codecatechism'))),
         q.Lambda((catechism) => q.Get(catechism))
-        )
-        );
-        res.status(200).json({ data: query });
-        ;
+      )
+    );
+    res.status(200).json({ data: query });
+    ;
   }
 
   //add data
   if (req.method == 'POST') {
-    const body = JSON.parse(req.body);
+    /* const body = JSON.parse(req.body);
     
     //console.log(body)
     let query = await faunaClient.query(
       q.Create(q.Collection('codecatechism'),body)
     );
-    res.status(200).json({ data: query });
-  }
-  
-  //update data
- /*  if (req.method == 'PUT') {
-    const body = JSON.parse(req.body);
-    let query = await faunaClient.query(
-      q.Update(
-        q.Select(
-          ['ref'],
-          q.Get(q.Match(q.Index('dcf8f8a6-2103-f84c-e532-28d173458a54'), body.id))
-        ),
-        {
-          data: {
-            watched: body.watched,
-          },
-        }
-      )
-    );
-    res.status(200).json({data: query})
-  }
- */
+    res.status(200).json({ data: query }); */
+    console.log("requisição temporiamente indisponível")
 
-  if (req.method === 'PUT'){
-    console.log('estou no PUT')
-    const body = JSON.parse(req.body);
+  }
+
+
+  if (req.method === 'PUT') {
+    /* const body = JSON.parse(req.body);
     const {title, date, time, description, obs, id } = body.data;
-    //console.log(typeof(title))
-      //console.log(id)
-
+   
     try {
       await faunaClient.query(
         q.Update(
@@ -82,44 +58,25 @@ export default async function handler(  req: NextApiRequest, res: NextApiRespons
       res.status(200).end();
     } catch (e: any) {
       res.status(500).json(e.message );
-    }
+    } */
+    console.log("requisição temporiamente indisponível")
   }
 
 
   //Delete
-  //pegar pelo parametro ou pelo body
-  if (req.method === 'DELETE'){
-    //console.log('estou no Delete')
+  if (req.method === 'DELETE') {
+/* 
     const body = JSON.parse(req.body);
-    const id  = body.data;
-    //console.log(body.data)
+    const id = body.data;
 
-  try {
-    await faunaClient.query(q.Delete(q.Ref(q.Collection('codecatechism'),id)));
-    res.status(200).end();
-  } catch (e: any) {
-    res.status(500).json({ error: e.message });
+    try {
+      await faunaClient.query(q.Delete(q.Ref(q.Collection('codecatechism'), id)));
+      res.status(200).end();
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+ */
+    console.log("requisição temporiamente indisponível")
   }
-
-  }
-
-  /* if (req.method == 'PUT') {
-   console.log('tentando PUT')
-    const body = JSON.parse(req.body);
-    let query = await faunaClient.query(
-      q.Update(
-        q.Select(
-          ['ref'],
-          q.Get(q.Match(q.Index('dcf8f8a6-2103-f84c-e532-28d173458a54'), body.id))
-        ),
-        {
-          data: {
-            watched: body.watched,
-          },
-        }
-      )
-    );
-    res.status(200).json({ data: query });
-  }  */
 
 }
