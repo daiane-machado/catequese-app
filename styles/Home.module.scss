@@ -4,78 +4,80 @@
   width: 100%;
   flex-direction: column;
   height: 100vh;
-  
-  
+
+
   .container {
     position: relative;
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     width: 100%;
     //min-height: 100vh
   }
 }
 
-.nextEvent , .otherEvents {
+.nextEvent,
+.otherEvents {
   width: 70%;
 }
 
-  .textMonthEvents{
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem 0 0rem 0 ;
+.textMonthEvents {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0 0rem 0;
 
-    :nth-child(1){
-      color: var(--purple-300);
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 1rem;
-      
-    }
-    
-    :nth-child(2){
-      color: var(--gray-200);
-      font-size: 0.85rem;
-      
-    }
+  :nth-child(1) {
+    color: var(--purple-300);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+
   }
 
-  .list {
-    list-style: none;
-    overflow: auto;
-    scroll-behavior: auto;
-    padding: 1rem 0 0 0.5rem;
-    //border-left: solid 0.3px var(--purple-300);
-    width: 70%;
-    border-radius: 8px;
-    box-shadow: inset 0 -1em 3em rgba(15, 1, 10, 0.1);
-    margin-bottom: 2rem;
-    
-  }
-  .list::-webkit-scrollbar {
-    width: 0.3rem;
-  }
-  
-  .list::-webkit-scrollbar-track {
-    background: var(--purple-100);
-    border-radius: 2px;
-  }
-  
-  .list::-webkit-scrollbar-thumb {
-    background: #adadadb7;
-    border-radius: 2px;
-  } 
-  
-  .listMonth {
-    height: 16.5rem;
-  }
+  :nth-child(2) {
+    color: var(--gray-200);
+    font-size: 0.85rem;
 
-  .listALL {
-    height: 30rem;
   }
+}
 
-  .textAllEvents {
+.list {
+  list-style: none;
+  overflow: auto;
+  scroll-behavior: auto;
+  padding: 1rem 0 0 0.5rem;
+  //border-left: solid 0.3px var(--purple-300);
+  width: 70%;
+  border-radius: 8px;
+  box-shadow: inset 0 -1em 3em rgba(15, 1, 10, 0.1);
+  margin-bottom: 2rem;
+
+}
+
+.list::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.list::-webkit-scrollbar-track {
+  background: var(--purple-100);
+  border-radius: 2px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #adadadb7;
+  border-radius: 2px;
+}
+
+.listMonth {
+  height: 16.5rem;
+}
+
+.listALL {
+  height: 30rem;
+}
+
+.textAllEvents {
   display: block;
   color: var(--purple-300);
   text-transform: uppercase;
@@ -85,19 +87,22 @@
   margin-bottom: 0.5rem;
 
 }
+
 @media (max-width: 728px) {
-    .container{
-      padding: 0 1rem  0 1rem;
-    }
-
-    .nextEvent , .otherEvents, .list {
-      width: 100%;
-    }
-
-  } 
-
-  @media (min-height:667px) {
-    .listMonth {
-      height: 25rem;
-    }
+  .container {
+    padding: 0 1rem 0 1rem;
   }
+
+  .nextEvent,
+  .otherEvents,
+  .list {
+    width: 100%;
+  }
+
+}
+
+@media (min-height:667px) {
+  .listMonth {
+    height: 25rem;
+  }
+}

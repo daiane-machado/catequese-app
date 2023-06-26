@@ -7,26 +7,20 @@ import { signOut, useSession } from 'next-auth/react'
 import { MdLogout } from 'react-icons/md'
 
 export function Header(props: { showButton: any, showSearch: any, dataCatechism?: any }) {
+
   const { showButton, showSearch, dataCatechism } = props
-  //const {data : session } = useSession()
-
+  
   return (
-
     <div className={styles.wrapper}>
       <div className={styles.divSignOut}>
-
-
       </div>
       <header className={styles.headerContainer}>
-
         <div className={styles.colLogo}>
           <div>
-
             <Link href="/">
               <Image src="/img/logo.svg" alt="logo catequese" width={45} height={45} />
             </Link>
             <div>
-
             </div>
           </div>
         </div>
@@ -47,13 +41,9 @@ export function Header(props: { showButton: any, showSearch: any, dataCatechism?
           }
           <button className={styles.signOut} onClick={() => signOut()}>
             <span>Sair</span>
-
           </button>
         </div>
-
       </header>
     </div>
-
   )
-
 }

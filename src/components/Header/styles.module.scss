@@ -19,10 +19,7 @@
     overflow: hidden;
     margin-top: 0.3rem;
     justify-content: space-between;
-
-
   }
-
 
   .colLogo,
   .colSearch,
@@ -34,17 +31,13 @@
     align-items: start;
     flex-direction: column;
     display: flex;
-
-
   }
 
   .colNew {
     display: flex;
     justify-content: right;
     height: 100%;
-    
-    
-    
+       
     :nth-child(1) {
       margin-left: 1rem;
     }
@@ -54,17 +47,14 @@
       color: var(--purple-100);
       background: transparent;
       margin-bottom: 0.3rem;
-     
       cursor: pointer;
       
-
       &:hover {
         color: var(--purple-150);
         filter: brightness(0.85);
         text-decoration: underline;
       }
-
-
+                                                                                                               
     }
 
   }

@@ -1,9 +1,7 @@
 .inputSearch  {
   width: 100%;
   height: 2.5rem;
-
   padding: 2% 2.5%;
-
   border: none;
   border-radius: 3rem;
   background: var(--purple-200);
@@ -11,9 +9,7 @@
 
   &::placeholder {
     color: var(--purple-300);
-    
   }
-
 
   &:focus{
     outline: none;

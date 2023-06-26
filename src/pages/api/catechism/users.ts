@@ -2,10 +2,7 @@ import { query as q } from 'faunadb';
 import { faunaClient } from '../../../Fauna';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-
-
 export default async function handler(  req: NextApiRequest, res: NextApiResponse) {
-
 
   //list data
   if (req.method == 'GET') {

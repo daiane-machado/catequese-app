@@ -46,17 +46,11 @@ export default function SelectedEvent({ data }: any) {
   }
 
   return (
-    <>
-      {/*  {session && ( */}
-
-      <div>
-        <Header showButton={false} showSearch={false} />
-        <FormEvent action={'view'} handleData={updateData} content={dataEvent} />
-        <Footer />
-      </div>
-      {/*  )} */}
-
-    </>
+    <div>
+      <Header showButton={false} showSearch={false} />
+      <FormEvent action={'view'} handleData={updateData} content={dataEvent} />
+      <Footer />
+    </div>
   )
 }
 

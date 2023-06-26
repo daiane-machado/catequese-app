@@ -2,8 +2,6 @@ import { query as q } from 'faunadb';
 import { faunaClient } from '../../../Fauna';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   //list data
@@ -22,8 +20,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   //add data
   if (req.method == 'POST') {
     /* const body = JSON.parse(req.body);
-    
-    //console.log(body)
     let query = await faunaClient.query(
       q.Create(q.Collection('codecatechism'),body)
     );
@@ -50,11 +46,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               description: description,
               obs: obs
             }
-          }
-           
+          } 
            )
            )
-           console.log("ok ok")
       res.status(200).end();
     } catch (e: any) {
       res.status(500).json(e.message );
